@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -24,6 +25,7 @@ class ShipsFragment : Fragment(R.layout.fragment_ships) {
     private lateinit var binding: FragmentShipsBinding
     private val viewModel by viewModels<MainViewModel>()
     private val shipsAdapter by lazy { ShipsAdapter() }
+    lateinit var searchView: SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +33,10 @@ class ShipsFragment : Fragment(R.layout.fragment_ships) {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentShipsBinding.inflate(inflater,container,false)
+
+        searchView = binding.searchView
+
+
         return binding.root
     }
 
@@ -38,6 +44,9 @@ class ShipsFragment : Fragment(R.layout.fragment_ships) {
         super.onViewCreated(view, savedInstanceState)
 
         setupShipsRecView()
+        searchShips()
+
+
 
         lifecycleScope.launch {
             binding.apply {
@@ -60,6 +69,21 @@ class ShipsFragment : Fragment(R.layout.fragment_ships) {
             }
         }
     }
+
+    private fun searchShips() {
+
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                TODO("Not yet implemented")
+            }
+        })
+    }
+
 
 
 
